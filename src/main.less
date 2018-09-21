@@ -1,0 +1,249 @@
+//Variables
+
+//Colors
+@cf-blue: #589bb9;
+@cf-dark: #32323c;
+@cf-background: #fbfbfb;
+@cf-text-dark: #3C454B;
+@cf-text-gray: #808080;
+@cf-active-link: #6EC0E6;
+@cf-brand-yellow: #ffb432;
+@cf-blue-button:  #6EC0E6 ;
+@cf-blue-button-border: #589AB8;
+
+
+
+
+
+
+
+
+
+
+//Dimensions
+@large: 1032px; //adjusted
+@medium-top: 959px;
+@medium-bottom: 768px;
+@small-top: 767px;
+@small-bottom: 480px;
+
+//Grid dimensions
+@full-width: 934px;
+@half-width: 446px;
+@third-width: 284px;
+@fourth-width: 202px;
+@fifth-width: 154px;
+@sixth-width: 124px;
+
+@three-fifths: 66.6666%;
+@two-fifths: 40%;
+@even-margin: 42px;
+@uneven-margin: 41px;
+
+//Fonts
+//@font-face {
+//font-family: "PostGrotesk Medium";
+//src: url("/style/assets/fonts/PostGrotesk-Medium.ttf");
+//url("/fonts/PostGrotesk-Medium.woff") format("woff");
+//}
+//@font-face {
+//font-family: "PostGrotesk Book";
+//src: url("/style/assets/fonts/PostGrotesk-Book.ttf");
+//url("/fonts/PostGrotesk-Medium.woff") format("woff");
+//}
+h1,h2,h3,h4,h5,h6 {
+  margin: 0 0 24px 0;
+}
+h4 {
+  font-family: PostGrotesk Medium,Tahoma, sans-serif;
+  font-size: 18px;
+  font-weight: normal;
+}
+p {
+  font-family: PostGrotesk Book,Tahoma, sans-serif;
+  color: @cf-text-gray;
+  font-size: 16px;
+}
+.p-margin-bottom {
+  margin-bottom: 36px;
+  margin-top:0px;
+}
+.heading-margin {
+  margin-bottom: 6px;
+  margin-top:0px;
+}
+.field-label {
+  line-height: 1;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-family: PostGrotesk Medium,Tahoma, sans-serif;
+  color: @cf-active-link;
+
+}
+.currency-change span {
+  color: #768895;
+  font-family: PostGrotesk Medium,Tahoma, sans-serif;
+  font-size: 12px;
+}
+.saving-info {
+  color: @cf-brand-yellow;
+  font-family: PostGrotesk Medium,Tahoma, sans-serif;
+}
+//Header
+.header-outter{
+    padding: 30px 24px 30px 24px;
+    background-color: @cf-dark;
+}
+//Body and divs
+#app {
+    background-color: @cf-background;
+}
+body {
+    margin:0px;
+}
+.card-box {
+  width: 90%;
+  padding: 5%;
+}
+.outter-block{
+  width: 100%;
+}
+.inner-block {
+  max-width: 1032px;
+  margin: 0 auto;
+  .padding-section;
+}
+.three-fifths{
+  width: @three-fifths;
+  display: inline-block;
+  .pad-col-left-desk
+}
+
+.two-fifths{
+  width: auto;
+  display: inline-block;
+  .pad-col-right-desk;
+}
+.box {
+  margin-bottom: 24px;
+  border: 1px solid #E6E6E6;
+  background-color: white;
+  border-radius: 4px;
+}
+.field-box{
+  padding: 20px;
+  border: 1px solid #E6E6E6;
+  border-top-left-radius: 4px;
+  border-top-right-radius: 4px;
+}
+.recipient-box {
+  border-top:none;
+}
+.pad-col-right-desk {
+  padding-left: 24px;
+  padding-right: 12px;
+}
+.pad-col-left-desk {
+  padding-right: 24px;
+  padding-left: 12px;
+}
+.padding-box {
+  padding: 36px;
+}
+.padding-section{
+  padding: 60px 24px 24px 60px;
+}
+//Align
+.absolute-aligner {
+  position: absolute;
+  margin: auto;
+}
+.absolute-top {
+    top: 0;
+    bottom: auto;
+}
+.absolute-left {
+    right: auto;
+    left: 0;
+}
+.currency-change {
+  background-color: #FBFBFB;
+  padding: 12px 18px;
+  border: 1px solid #E6E6E6;
+  border-top:none;
+  border-bottom-left-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+.justified {
+  justify-content: space-between;
+}
+.saving-send {
+  display: flex;
+  align-items: center;
+}
+.flex-box{
+  display: flex;
+}
+//elements
+.btn {
+  display: inline-block;
+    width: auto;
+    margin: 0;
+    border: 1px solid #EAEEF1;
+    padding: 12px 18px;
+    font-family: PostGrotesk Medium,Tahoma, sans-serif;
+    font-size: 100%;
+    vertical-align: middle;
+    white-space: nowrap;
+    border-radius: 4px;
+    cursor: pointer;
+    -webkit-appearance: none;
+}
+.btn-send {
+  color:white;
+  background-color: @cf-blue-button;
+  border: 1px solid @cf-blue-button-border;
+}
+input{
+width: 100%;
+display: block;
+border: none;;
+border-radius: 4px;
+background-color: white;
+transition: border-color 0.2s cubic-bezier(0.39, 0.01, 0.2, 0.98);
+will-change: border-color;
+font-size: 24px;
+font-family: PostGrotesk Medium,Tahoma, sans-serif;
+padding-top: 10px;
+
+}
+.tr-form {
+  margin-bottom: 24px;
+}
+.select-control{
+  background-color: #fff;
+  border-radius: 4px;
+  color: #333;
+  cursor: default;
+  display: table;
+  border-spacing: 0;
+  border-collapse: separate;
+  height: 36px;
+  outline: none;
+  overflow: hidden;
+  position: relative;
+  padding: 10px;
+  width: 120px;
+  border: 1px solid #E6E6E6;
+  border-top-left-radius: 25px;
+  border-bottom-left-radius: 25px;
+  }
+//Media Breakpoints
+@media only screen and (max-width: 1031px) and (min-width: 756px) {
+    .three-fifths, .two-fifths{
+        width: 90%;
+        padding-left: 5%;
+        padding-right: 5%;
+        float: none;
+    }
+}
