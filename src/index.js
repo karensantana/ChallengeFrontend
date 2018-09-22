@@ -1,12 +1,15 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
-require('./main.css');
+require('./styles/main.css');
+import Main from './components/main';
+import Header from './components/header'
 
 class App extends React.Component {
   render(){
     return (
       <div>
-      hello mundo
+       <Header />
+       <Main />
       </div>
     )
   }
