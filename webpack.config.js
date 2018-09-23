@@ -9,7 +9,8 @@ module.exports ={
   module: {
     rules: [
       { test: /\.(js)$/, use: 'babel-loader' },
-      { test: /\.css$/, use: ['style-loader', 'css-loader']}
+      { test: /\.css$/, use: ['style-loader', 'css-loader']},
+      { test: /\.(gif|eot|woff|woff2|ttf|svg)$/, use: ['url-loader'] }
     ]
   },
   mode: process.env.NODE_ENV === 'production' ? 'production':'development',

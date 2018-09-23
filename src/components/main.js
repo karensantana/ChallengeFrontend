@@ -9,6 +9,7 @@ const Main =() => {
     <section className="main">
         <div className="outter-block">
             <div className="inner-block">
+            
               <TransactionDetails />
               <Summary />
             </div>

@@ -1,9 +1,13 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
 
 const Header =()=> {
     return (
-    <div className="header-outter"> </div>
+    <div className="header-outter"> 
+        <div className="header-inner">
+            <object id="cf-logo" data="../src/images/logo-currencyfair-neg.svg" type="image/svg+xml">
+            </object>
+        </div>
+    </div>
     );
 }
 
