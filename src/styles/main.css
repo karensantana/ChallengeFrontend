@@ -33,6 +33,17 @@ p {
   color: #808080;
   font-size: 16px;
 }
+h4.steps {
+  font-size: 14px;
+  margin-bottom: 0px;
+  font-family: PostGrotesk Medium, Tahoma, sans-serif;
+}
+h4.steps.doing {
+  color: #7ecbeb;
+}
+h4.steps.todo {
+  color: #bdc9cf;
+}
 .p-margin-bottom {
   margin-bottom: 36px;
   margin-top: 0px;
@@ -250,6 +261,30 @@ input {
 }
 .tr-form {
   margin-bottom: 24px;
+}
+ol.threesteps {
+  width: 100%;
+  display: flex;
+  padding: 0px;
+}
+ol.threesteps li.stepstate span {
+  font-family: PostGrotesk Medium, Tahoma, sans-serif;
+}
+ol.threesteps li.stepstate {
+  flex-grow: 1;
+  padding-bottom: 20px;
+}
+ol.threesteps li {
+  display: inline-block;
+  text-align: center;
+}
+ol.threesteps li.doing {
+  color: #7ecbeb;
+  border-bottom: 4px solid #6ec0e6;
+}
+ol.threesteps li.todo {
+  color: #bdc9cf;
+  border-bottom: 4px solid #e2f2fa;
 }
 .select-control {
   background-color: #fff;
