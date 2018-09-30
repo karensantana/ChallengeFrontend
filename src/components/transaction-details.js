@@ -16,7 +16,7 @@ const TransactionDetails =() => {
                               <input type="text" id="send-input" className="form-input">
                               </input>
                               <div className="select-control">
-                                <img src="https://app.currencyfair.com/img/country_flags/united_kingdom_uk_flag.png" alt="UK currency" />
+                                <img className="flag-img" src="https://app.currencyfair.com/img/country_flags/united_kingdom_uk_flag.png" alt="UK currency" />
                                 </div>
                             </div>
 
@@ -25,8 +25,13 @@ const TransactionDetails =() => {
                       <div className="field-box recipient-box">
                         <div className="field-wrapper">
                           <label className="field-label absolute-left absolute-top">Recipient Gets </label>
-                          <input type="text" id="send-input" className="form-input">
-                          </input>
+                          <div className="flex-box">
+                              <input type="text" id="receive-input" className="form-input">
+                              </input>
+                              <div className="select-control">
+                                <img className="flag-img" src="https://app.currencyfair.com/img/country_flags/united_kingdom_uk_flag.png" alt="UK currency" />
+                                </div>
+                            </div>
 
                           </div>
                       </div>

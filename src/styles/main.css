@@ -251,7 +251,7 @@ input {
   width: 100%;
   display: block;
   border: none;
-  border-radius: 4px;
+  -radius: 4px;
   background-color: white;
   transition: border-color 0.2s cubic-bezier(0.39, 0.01, 0.2, 0.98);
   will-change: border-color;
@@ -259,8 +259,21 @@ input {
   font-family: PostGrotesk Medium, Tahoma, sans-serif;
   padding-top: 10px;
 }
+input:focus {
+  outline: none;
+}
+.field-box:hover,
+.field-box:focus-within {
+  border-color: #6ec0e6;
+  transition-duration: 0.1s;
+}
 .tr-form {
   margin-bottom: 24px;
+}
+.step-wrapper {
+  text-align: left;
+  max-width: 60%;
+  margin: auto;
 }
 ol.threesteps {
   width: 100%;
@@ -286,6 +299,10 @@ ol.threesteps li.todo {
   color: #bdc9cf;
   border-bottom: 4px solid #e2f2fa;
 }
+.flag-img {
+  width: 24px;
+  vertical-align: middle;
+}
 .select-control {
   background-color: #fff;
   border-radius: 4px;
@@ -294,12 +311,12 @@ ol.threesteps li.todo {
   display: table;
   border-spacing: 0;
   border-collapse: separate;
-  height: 36px;
+  height: 30px;
   outline: none;
   overflow: hidden;
   position: relative;
   padding: 10px;
-  width: 120px;
+  width: 100px;
   border: 1px solid #E6E6E6;
   border-top-left-radius: 25px;
   border-bottom-left-radius: 25px;
@@ -325,5 +342,8 @@ ol.threesteps li.todo {
   .two-fifths {
     width: 100%;
     float: none;
+  }
+  .step-wrapper span {
+    display: none;
   }
 }
