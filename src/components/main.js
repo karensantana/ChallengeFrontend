@@ -1,9 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Summary from './summary';
-import ThreeSteps from './Steps';
-import {steps} from './steps/index_steps';
 import TransactionDetails from './transaction-details';
+import WizardForm from './WizardForm'
+import StepOne from './steps/StepOne';
 
 
 const Main =() => {
@@ -14,14 +14,14 @@ const Main =() => {
                 <div className="three-fifths">
                     <div className="column-wrapper pad-col-left">
                         <div className="card-box box left-box">
-                            <ThreeSteps steps= {steps} />
+                            <WizardForm />
                                 
                                     
                         </div>
                     </div>
                 </div>
                 <div className="two-fifths">
-                    <Summary />
+                    <Summary stepone={StepOne}/>
                 </div>
             </div>
         </div>

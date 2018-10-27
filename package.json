@@ -27,9 +27,11 @@
   },
   "homepage": "https://github.com/karensantana/ChallengeFrontend#readme",
   "dependencies": {
+    "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
-    "redux-form": "^7.4.2"
+    "redux-form": "^7.4.2",
+    "redux-form-input-masks": "^1.2.0"
   },
   "devDependencies": {
     "@babel/core": "^7.1.0",

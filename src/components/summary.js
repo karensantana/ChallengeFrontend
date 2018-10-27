@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { connect } from 'react-redux';
+import { formValueSelector } from 'redux-form';
 
 
-const Summary =() => {
+
+let Summary =(props) => {
     return(
        
             <div className="column-wrapper pad-col-right summary-box"> 
@@ -11,21 +14,23 @@ const Summary =() => {
                 </div>
                 <div className="info-box info-box-middle white-box">
                         <h4 className="summary-info">You send</h4>
+                        <span className="summary-amounts">{props.tosend}</span>
                     </div>
                 <div className="info-box info-box-middle">
                     <h4 className="details-header">Receiving Details</h4>
                 </div>
                 <div className="receiving-details info-box-middle white-box side-border">
-                    <h4 className="sumary-info">Rate</h4>
+                    <h4 className="summary-info">Rate</h4>
                 </div>
                 <div className="receiving-details info-box-middle white-box side-border">
-                    <h4 className="sumary-info">Fee</h4>
+                    <h4 className="summary-info">Fee</h4>
                 </div>
                 <div className="receiving-details info-box-middle white-box side-border">
-                    <h4 className="sumary-info">Delivery date</h4>
+                    <h4 className="summary-info">Delivery date</h4>
                 </div>
                 <div className="receiving-details info-box-middle white-box side-border">
-                    <h4 className="sumary-info">Recipient gets</h4>
+                    <h4 className="summary-info">Recipient gets</h4>
+                    <span className="summary-amounts">{props.toreceive}</span>
                 </div>
                 <div className="info-box">
                     <h4 className="saving-info">You save compared to your bank!</h4>
@@ -34,4 +39,13 @@ const Summary =() => {
         
     );
 }
+const mapStateToProps = state => ({
+    tosend: formValueSelector("StepOne")(state, "tosend"),
+    toreceive: formValueSelector("StepOne")(state, "toreceive")
+  })
+
+Summary = connect(
+    mapStateToProps
+  )(Summary)
+
 export default Summary;
