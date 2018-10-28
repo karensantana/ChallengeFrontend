@@ -3,22 +3,23 @@ import { CHANGE_AMOUNTTORECEIVE } from "../constants/action-types";
 import { CHANGE_CURRENCYTOSEND } from "../constants/action-types";
 import { CHANGE_CURRENCYTORECEIVE } from "../constants/action-types";
 
-export const ChangeAmountToSend = amountToSend => ({
+export const changeAmountToSend = amountToSend => ({
     type: CHANGE_AMOUNTTOSEND,
-    payload: 0.00
+    payload: amountToSend
 });
 
-export const ChangeAmountToReceive = amountToSend => ({
+export const changeAmountToReceive = amountToReceive => ({
     type: CHANGE_AMOUNTTORECEIVE,
-    payload: 0.00
+    payload: amountToReceive
 });
 
-export const ChangeCurrencyToSend = amountToSend => ({
+export const changeCurrencyToSend = senderCurrency => ({
     type: CHANGE_CURRENCYTOSEND,
-    payload: 0.00
+    payload: senderCurrency
 });
 
-export const ChangeCurrencyToReceive = amountToSend => ({
+export const changeCurrencyToReceive = receiverCurrency => ({
     type: CHANGE_CURRENCYTORECEIVE,
-    payload: 0.00
+    payload: receiverCurrency
 });
+

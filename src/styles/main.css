@@ -351,6 +351,9 @@ select {
   padding-left: 40px;
   padding-top: 10px;
 }
+select:focus {
+  outline: none;
+}
 figure {
   margin: 0px;
   display: inline;
