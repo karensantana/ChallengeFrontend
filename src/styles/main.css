@@ -397,6 +397,13 @@ figure {
   width: 22px;
   height: 22px;
 }
+.affix {
+  position: fixed;
+  top: 10%;
+  width: 100%;
+  z-index: 9999;
+  display: none;
+}
 @media only screen and (max-width: 1031px) and (min-width: 756px) {
   .three-fifths,
   .two-fifths {
