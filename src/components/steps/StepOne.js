@@ -7,15 +7,35 @@ import {currencies} from '../currencies'
 import {changeAmountToSend, changeAmountToReceive, changeCurrencyToSend, changeCurrencyToReceive} from '../../actions/index'
 import { change } from 'redux-form';
 import currencyAPISimulator from '../currencyAPISimulator';
+import ReactModal from 'react-modal';
 
 
 class StepOne extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      showModal: false
+    };
+
     this.onAmountToSendChange = this.onAmountToSendChange.bind(this);
     this.formatCurrencyValue = this.formatCurrencyValue.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+//Modal methods
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
   }
   
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+  
+  getParent() {
+    return document.querySelector('#app');
+  }
+
   //Normalize before saving in the store
   normalizeCurrencyValue(value){
     if (!value) {
@@ -170,7 +190,14 @@ render() {
       </div>
     </div>
     <div className="saving-send justified">
-      <a className=" btn btn-send">Next </a>
+    <ReactModal 
+           isOpen={this.state.showModal}
+           contentLabel="Minimal Modal Example"
+           parentSelector={this.getParent}
+        >
+          <button className="btn btn-send" onClick={this.handleCloseModal}>Close Modal</button>
+        </ReactModal>
+      <a className=" btn btn-send" onClick={this.handleOpenModal}>Next </a>
     </div>
   </form>
   ) 

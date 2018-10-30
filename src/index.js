@@ -6,6 +6,7 @@ import Header from './components/header';
 import store from "./store/index";
 import { Provider } from "react-redux";
 
+
 class App extends React.Component {
   render(){
     return (
