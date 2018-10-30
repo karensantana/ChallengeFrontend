@@ -1,4 +1,4 @@
-const normalizeCurrencyValue = (value) => {
+const formatCurrencyValue = (value) => {
     if (!value) {
         return value
       }
@@ -7,4 +7,4 @@ const normalizeCurrencyValue = (value) => {
 
 }
 
-export default normalizeCurrencyValue;
+export default formatCurrencyValue;

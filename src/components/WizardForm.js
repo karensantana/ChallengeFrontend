@@ -68,6 +68,11 @@ class WizardForm extends Component {
                 {page === 2 && <StepTwo previousPage={this.previousPage} onSubmit={this.nextPage}/>}
                 {page === 3 && <StepThree previousPage={this.previousPage} onSubmit={onSubmit}/>}
             </div>
+            <div className="legal-info">
+              <h5 className="copyright">©{(new Date()).getFullYear()} CurrencyFair </h5>
+              <span className="legal-stuff"><a href="https://www.currencyfair.com/trust/trust-legal-stuff/" target="_blank">Legal Stuff</a></span>
+              <span className="legal-stuff"><a href="https://support.currencyfair.com/s/?language=en" target="_blank">Help and Support</a></span>
+            </div>
         </div>
     )
   }

@@ -22,6 +22,7 @@ h4 {
 .details-header {
   color: #747474;
   margin: 0px;
+  display: inline-block;
 }
 .summary-info {
   color: #adadad;
@@ -33,6 +34,36 @@ h4 {
   font-family: "PostGrotesk Medium", Tahoma, sans-serif;
   color: #747474;
   float: right;
+}
+.summary-links {
+  font-family: "PostGrotesk Book", Tahoma, sans-serif;
+  color: #6ec0e6;
+  float: right;
+}
+.exchange-details {
+  font-family: "PostGrotesk Medium", Tahoma, sans-serif;
+  color: #adadad;
+  float: right;
+}
+.legal-info {
+  padding-top: 20px;
+  border-top: 1px solid #ededed;
+}
+.copyright {
+  color: #adadad;
+  margin: 0px;
+  font-weight: 500;
+  font-size: 12px;
+  font-family: "PostGrotesk Medium", Tahoma, sans-serif;
+  display: inline-block;
+}
+.legal-stuff a {
+  font-family: "PostGrotesk Medium", Tahoma, sans-serif;
+  font-size: 12px;
+  color: #6ec0e6;
+  float: right;
+  text-decoration: none;
+  padding-right: 10px;
 }
 p {
   font-family: "PostGrotesk Book", Tahoma, sans-serif;
@@ -348,8 +379,9 @@ select {
   font-size: 16px;
   color: #747474;
   width: 100%;
+  height: 42px;
   padding-left: 40px;
-  padding-top: 10px;
+  padding-top: 0px;
 }
 select:focus {
   outline: none;

@@ -3,8 +3,6 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { connect } from 'react-redux'
 import renderSelectField from '../renderSelectField';
 import renderField from '../renderField';
-import formatAmount from '../formatters/formatAmount';
-import normalizeCurrencyValue from '../normalizers/normalizeCurrencyValue';
 import {currencies} from '../currencies'
 import {changeAmountToSend, changeAmountToReceive, changeCurrencyToSend, changeCurrencyToReceive} from '../../actions/index'
 import { change } from 'redux-form';
@@ -15,33 +13,85 @@ class StepOne extends Component {
   constructor(props){
     super(props);
     this.onAmountToSendChange = this.onAmountToSendChange.bind(this);
+    this.formatCurrencyValue = this.formatCurrencyValue.bind(this);
   }
   
-  
+  //Normalize before saving in the store
+  normalizeCurrencyValue(value){
+    if (!value) {
+      return value;
+    }
+    var onlyNums = value.replace(/[^\d]/g, '');
+    return onlyNums;
+  }
+  //Format Input Value
+  formatCurrencyValue(value){
+     console.log("received value to send format: "+ value);
+     if (!value) {
+         return value;
+    }
+
+    if(typeof value == 'number') {
+      console.log("Type is number Formatted value"+ new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.receiverCurrency }).format(value));
+      return new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.receiverCurrency }).format(value);
+    }
+    var onlyNums = value.replace(/[^\d]/g, '');
+    if(!onlyNums){
+      return onlyNums;
+    }
+
+    return new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.senderCurrency }).format(parseFloat(onlyNums));
+  }
   onAmountToSendChange(toSendValue){
+    console.log(toSendValue);
      //Here we simulate app is conecting to currency exchange API
     var scValue = currencyAPISimulator(this.props.senderCurrency);
     var rcValue = currencyAPISimulator(this.props.receiverCurrency);
-    var calResult = (toSendValue * scValue * rcValue );
-    return calResult; 
+    
+    if(!toSendValue){
+      return 0.00;
+    }
+
+    var toSend = parseFloat(toSendValue).toFixed(2);
+    var calResult = (toSend / scValue * rcValue ).toFixed(2);
+    return calResult;
+      
   }
   
-  onAmountToReceiveChange() {
-    console.log("Amount to receive changed");
+  onAmountToReceiveChange(toReceiveValue) {
+    var scValue = currencyAPISimulator(this.props.senderCurrency);
+    var rcValue = currencyAPISimulator(this.props.receiverCurrency);
+
+    if(!toReceiveValue){
+      return 0.00;
+    }
+    var toReceive = parseFloat(toReceiveValue).toFixed(2);
+    var calResult = (toReceive / rcValue * scValue ).toFixed(2);
+    return calResult;
+
   }
 
-  onSenderCurrencyChange(){
-    console.log("Sender currency Changed");
+  onSenderCurrencyChange(senderCurrencyValue){
+    var scValue = currencyAPISimulator(senderCurrencyValue);
+    var rcValue = currencyAPISimulator(this.props.receiverCurrency);
+    var toSendValue = this.props.amountToSend;
+    var calResult = ( toSendValue / scValue * rcValue ).toFixed(2);;
+    return calResult;
+     
   }
 
-  onReceiverCurrencyChange(){
-    console.log("Receiver currency Changed");
+  onReceiverCurrencyChange(receiverCurrencyValue){
+    var scValue = currencyAPISimulator(this.props.senderCurrency);
+    var rcValue = currencyAPISimulator(receiverCurrencyValue);
+    var toSendValue = this.props.amountToSend;
+    var calResult = ( toSendValue / scValue * rcValue ).toFixed(2);
+    return calResult;
 
   }
 
 render() {
   
-  const { senderCurrency, receiverCurrency, change} = this.props
+  const { amountToSend, amountToReceive, senderCurrency, receiverCurrency, change} = this.props
   return (
     <form className="tr-form">
       <div className="transaction-form">
@@ -55,6 +105,7 @@ render() {
                 component={renderField} 
                 label="You send" 
                 className="form-input"
+                normalize= {this.normalizeCurrencyValue}
                 onChange={(event, newValue, previousValue) => {
                   var calResult = this.onAmountToSendChange(newValue);
                   change('amountToReceive', calResult)
@@ -65,7 +116,17 @@ render() {
               <figure className="flag-image">
                 <img src={`/src/images/${senderCurrency}.png`}></img>
               </figure>
-                <Field name="senderCurrency" id="senderCurrency" component={renderSelectField} options= {currencies} onChange={this.onSenderCurrencyChange}>
+                <Field 
+                name="senderCurrency" 
+                id="senderCurrency" 
+                component={renderSelectField} 
+                options= {currencies} 
+                onChange={(event, newValue, previousValue) => {
+                  var calResult = this.onSenderCurrencyChange(newValue);
+                  change('amountToReceive', calResult);
+                  
+                }}
+                >
                 </Field>
               </div>
             </div>
@@ -82,15 +143,25 @@ render() {
                   component={renderField} 
                   label="Recipientgets" 
                   className="form-input"
-                  onChange = {this.onAmountToReceiveChange}
-                 
+                  normalize= {this.normalizeCurrencyValue}
+                  onChange={(event, newValue, previousValue) => {
+                    var calResult = this.onAmountToReceiveChange(newValue);
+                    change('amountToSend', calResult)
+                  }}
                   
                   />
             <div className="select-control">
               <figure className="flag-image">
               <img src={`/src/images/${receiverCurrency}.png`}></img>
               </figure>
-              <Field name="receiverCurrency" component={renderSelectField} options= {currencies} onChange={this.onReceiverCurrencyChange}>
+              <Field 
+              name="receiverCurrency" 
+              component={renderSelectField} 
+              options= {currencies} 
+              onChange={(event, newValue, previousValue) => {
+                var calResult = this.onReceiverCurrencyChange(newValue);
+                change('amountToReceive', calResult)
+              }}>
               </Field>
             </div>
             </div>
