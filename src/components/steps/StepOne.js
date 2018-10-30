@@ -75,6 +75,10 @@ class StepOne extends Component {
     var scValue = currencyAPISimulator(senderCurrencyValue);
     var rcValue = currencyAPISimulator(this.props.receiverCurrency);
     var toSendValue = this.props.amountToSend;
+    
+    if(!toSendValue){
+      return 0.00;
+    }
     var calResult = ( toSendValue / scValue * rcValue ).toFixed(2);;
     return calResult;
      
@@ -84,6 +88,10 @@ class StepOne extends Component {
     var scValue = currencyAPISimulator(this.props.senderCurrency);
     var rcValue = currencyAPISimulator(receiverCurrencyValue);
     var toSendValue = this.props.amountToSend;
+
+    if(!toSendValue){
+      return 0.00;
+    }
     var calResult = ( toSendValue / scValue * rcValue ).toFixed(2);
     return calResult;
 
