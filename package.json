@@ -30,6 +30,7 @@
     "prop-types": "^15.6.2",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
+    "react-modal": "^3.6.1",
     "redux-form": "^7.4.2",
     "redux-form-input-masks": "^1.2.0"
   },

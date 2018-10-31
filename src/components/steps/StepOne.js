@@ -7,15 +7,35 @@ import {currencies} from '../currencies'
 import {changeAmountToSend, changeAmountToReceive, changeCurrencyToSend, changeCurrencyToReceive} from '../../actions/index'
 import { change } from 'redux-form';
 import currencyAPISimulator from '../currencyAPISimulator';
+import ReactModal from 'react-modal';
 
 
 class StepOne extends Component {
   constructor(props){
     super(props);
+    this.state = {
+      showModal: false
+    };
+
     this.onAmountToSendChange = this.onAmountToSendChange.bind(this);
     this.formatCurrencyValue = this.formatCurrencyValue.bind(this);
+    this.handleOpenModal = this.handleOpenModal.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
+  }
+//Modal methods
+
+  handleOpenModal () {
+    this.setState({ showModal: true });
   }
   
+  handleCloseModal () {
+    this.setState({ showModal: false });
+  }
+  
+  getParent() {
+    return document.querySelector('#app');
+  }
+
   //Normalize before saving in the store
   normalizeCurrencyValue(value){
     if (!value) {
@@ -26,13 +46,12 @@ class StepOne extends Component {
   }
   //Format Input Value
   formatCurrencyValue(value){
-     console.log("received value to send format: "+ value);
      if (!value) {
          return value;
     }
 
     if(typeof value == 'number') {
-      console.log("Type is number Formatted value"+ new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.receiverCurrency }).format(value));
+      
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.receiverCurrency }).format(value);
     }
     var onlyNums = value.replace(/[^\d]/g, '');
@@ -43,7 +62,6 @@ class StepOne extends Component {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.senderCurrency }).format(parseFloat(onlyNums));
   }
   onAmountToSendChange(toSendValue){
-    console.log(toSendValue);
      //Here we simulate app is conecting to currency exchange API
     var scValue = currencyAPISimulator(this.props.senderCurrency);
     var rcValue = currencyAPISimulator(this.props.receiverCurrency);
@@ -75,7 +93,7 @@ class StepOne extends Component {
     var scValue = currencyAPISimulator(senderCurrencyValue);
     var rcValue = currencyAPISimulator(this.props.receiverCurrency);
     var toSendValue = this.props.amountToSend;
-    
+
     if(!toSendValue){
       return 0.00;
     }
@@ -178,7 +196,28 @@ render() {
       </div>
     </div>
     <div className="saving-send justified">
-      <a className=" btn btn-send">Next </a>
+    <ReactModal 
+           isOpen={this.state.showModal}
+           contentLabel="Minimal Modal Example"
+           parentSelector={this.getParent}
+           className="sec-code-modal"
+           overlayClassName="code-modal-over"
+           onRequestClose={this.handleCloseModal}
+           shouldCloseOnOverlayClick={true}
+        >
+          <div id="code-modal-head">
+              <h2 className="modal-heading">Identity verification Required</h2>
+              <p>For your security, we ocassionally required you to verify your identity by entering a code sent to your mobile device.</p>
+          </div>
+          <div className="code-modal-body">
+              <h2 className="code">Enter the code sent via SMS to</h2><div className="phone-sent"><div className="head"><span>809</span></div><div className="body"><span>4425278</span></div></div>
+          </div>
+          <div className="code-modal-footer">
+          <button className="btn btn-disabled" onClick={this.handleCloseModal}>Verify Code</button>
+          <button className="btn btn-back" onClick={this.handleCloseModal}>Back</button>
+          </div> 
+        </ReactModal>
+      <a className="btn btn-send" onClick={this.handleOpenModal}>Next </a>
     </div>
   </form>
   ) 
