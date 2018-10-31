@@ -95,6 +95,10 @@ class StepOne extends Component {
     var scValue = currencyAPISimulator(senderCurrencyValue);
     var rcValue = currencyAPISimulator(this.props.receiverCurrency);
     var toSendValue = this.props.amountToSend;
+
+    if(!toSendValue){
+      return 0.00;
+    }
     var calResult = ( toSendValue / scValue * rcValue ).toFixed(2);;
     return calResult;
      
@@ -104,6 +108,10 @@ class StepOne extends Component {
     var scValue = currencyAPISimulator(this.props.senderCurrency);
     var rcValue = currencyAPISimulator(receiverCurrencyValue);
     var toSendValue = this.props.amountToSend;
+    
+    if(!toSendValue){
+      return 0.00;
+    }
     var calResult = ( toSendValue / scValue * rcValue ).toFixed(2);
     return calResult;
 
@@ -194,10 +202,24 @@ render() {
            isOpen={this.state.showModal}
            contentLabel="Minimal Modal Example"
            parentSelector={this.getParent}
+           className="sec-code-modal"
+           overlayClassName="code-modal-over"
+           onRequestClose={this.handleCloseModal}
+           shouldCloseOnOverlayClick={true}
         >
-          <button className="btn btn-send" onClick={this.handleCloseModal}>Close Modal</button>
+          <div id="code-modal-head">
+              <h2 className="modal-heading">Identity verification Required</h2>
+              <p>For your security, we ocassionally required you to verify your identity by entering a code sent to your mobile device.</p>
+          </div>
+          <div className="code-modal-body">
+              <h2 className="code">Enter the code sent via SMS to</h2><div className="phone-sent"><div className="head"><span>809</span></div><div className="body"><span>4425278</span></div></div>
+          </div>
+          <div className="code-modal-footer">
+          <button className="btn btn-disabled" onClick={this.handleCloseModal}>Verify Code</button>
+          <button className="btn btn-back" onClick={this.handleCloseModal}>Back</button>
+          </div> 
         </ReactModal>
-      <a className=" btn btn-send" onClick={this.handleOpenModal}>Next </a>
+      <a className="btn btn-send" onClick={this.handleOpenModal}>Next </a>
     </div>
   </form>
   ) 

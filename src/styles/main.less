@@ -17,6 +17,7 @@
 @light-gray: #ededed;
 @active-step-blue: #7ecbeb;
 @step-disabled: #bdc9cf;
+@modal-heading: #8899a5;
 
 
 
@@ -254,9 +255,10 @@ body {
 }
 
 .summary-box {
-  border: 1px solid #E6E6E6;
+  border-left: 1px solid #E6E6E6;
   border-right: none;
-  height: 100%;
+  height: 100vh;
+  background-color: #fbfbfb;
   .right-box;
 }
 .side-border {
@@ -337,6 +339,17 @@ body {
     border-radius: 4px;
     cursor: pointer;
     -webkit-appearance: none;
+}
+.btn-disabled {
+  background-color: #ddf1f9;
+  border: 1px solid #daebf2;
+  margin-right: 20px;
+  color: white;
+}
+.btn-back {
+  background-color: #fbfdfd;
+  color: #8899a5;
+  border: 1px solid #daebf2;
 }
 .btn-send {
   color:white;
@@ -465,8 +478,82 @@ ol.threesteps li.todo {
   position: fixed;
   top: 10%;
   width: 100%;
-  z-index: 9999;
+  z-index: 0;
   display: none;
+}
+
+//Modal
+
+.sec-code-modal {
+  max-width: 600px;
+  top: 50%;
+  left: 50%;
+  position: fixed;
+  transform: translate(-50%,-50%);
+  background-color: #ffffff;
+  border-radius: 3px;
+}
+.code-modal-over{
+  background-color: rgba(4, 4, 4, 0.67);
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+}
+#code-modal-head {
+  border-bottom: 1px solid #dcdcdc;
+  padding: 30px 50px 30px 30px;
+  h2.modal-heading {
+    font-family: "PostGrotesk Medium",Tahoma, sans-serif;
+    color: @modal-heading;
+    font-weight: 500;
+    font-size: 18px;
+  }
+  
+  p{
+    font-size: 14px;
+    font-weight: 300;
+
+  }
+}
+.code-modal-body {
+  padding: 45px 45px;
+  margin: auto;
+  text-align: center;
+  display: inline-flex;
+  h2.code {
+    font-family: "PostGrotesk Medium",Tahoma, sans-serif;
+    color: @cf-text-dark;
+    font-size: 16px;
+    font-weight: 500;
+
+  }
+  .phone-sent{
+    display: inline-flex;
+    margin-left: 10px;
+    .head span {
+      padding: 6px;
+      border: 1px solid #e6e4e4;
+      background-color: #f2f0f0;
+      font-family: "PostGrotesk Book",Tahoma, sans-serif;
+      font-size: 14px;
+      color: #a9a9a9;
+    }
+    .body span {
+      padding: 6px;
+      border: 1px solid #e6e4e4;
+      background-color: #f7f7f7;
+      font-family: "PostGrotesk Book",Tahoma, sans-serif;
+      font-size: 14px;
+      color: #a9a9a9;
+    }
+  }
+
+}
+.code-modal-footer {
+  border-top: 1px solid #dcdcdc;
+  padding: 30px 50px 30px 30px;
 }
 
 //Media Breakpoints
@@ -475,19 +562,21 @@ ol.threesteps li.todo {
         width: 80%;
         padding-left: 10%;
         padding-right: 10%;
-        float: none;
+        float: unset;
     }
+
 }
 @media only screen and (max-width: 755px) and (min-width: 481px) {
   .three-fifths, .two-fifths{
     width: 100%;
-    float: none;
+    float: unset;
 }
+  
 }
 @media only screen and (max-width: 480px) {
   .three-fifths, .two-fifths{
     width: 100%;
-    float: none;
+    float: unset;
 }
   .step-wrapper span {
     display: none;
