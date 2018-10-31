@@ -46,13 +46,12 @@ class StepOne extends Component {
   }
   //Format Input Value
   formatCurrencyValue(value){
-     console.log("received value to send format: "+ value);
      if (!value) {
          return value;
     }
 
     if(typeof value == 'number') {
-      console.log("Type is number Formatted value"+ new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.receiverCurrency }).format(value));
+      
       return new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.receiverCurrency }).format(value);
     }
     var onlyNums = value.replace(/[^\d]/g, '');
@@ -63,7 +62,6 @@ class StepOne extends Component {
     return new Intl.NumberFormat('en-US', { style: 'currency', currency: this.props.senderCurrency }).format(parseFloat(onlyNums));
   }
   onAmountToSendChange(toSendValue){
-    console.log(toSendValue);
      //Here we simulate app is conecting to currency exchange API
     var scValue = currencyAPISimulator(this.props.senderCurrency);
     var rcValue = currencyAPISimulator(this.props.receiverCurrency);
@@ -108,7 +106,7 @@ class StepOne extends Component {
     var scValue = currencyAPISimulator(this.props.senderCurrency);
     var rcValue = currencyAPISimulator(receiverCurrencyValue);
     var toSendValue = this.props.amountToSend;
-    
+
     if(!toSendValue){
       return 0.00;
     }
